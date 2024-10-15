@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: url('fundo3.gif') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+            position: relative;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        body:hover {
+            box-shadow: 0 0 30px #00ebff;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(19, 31, 57, 0.5);
+            z-index: 0;
+        }
+
+        .container {
+            background-color: rgba(170, 88, 252, 0);
+            border-radius: 15px;
+            padding: 30px;
+            z-index: 1;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            transition: opacity 2s ease;
+        }
+
+        input[type="text"] {
+            width: 400px;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: border 0.3s;
+            font-weight: bold;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 25px;
+            font-size: 18px;
+            background-color: #58029f;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #aa58fc;
+        }
+
+        .favorites {
+            margin-top: 40px;
+        }
+
+        .favorites h2 {
+            margin-bottom: 10px;
+            font-size: 1.5em;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        .favorites a {
+            color: #a46aff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .favorites a:hover {
+            color: #58029f;
+            text-decoration: underline;
+        }
+
+        /* Adicione essa classe ao seu CSS */
+        .fade-out {
+            animation: fadeOut 2s forwards;
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    
+    <div class="container">
+        <h1 id="welcome">Bem-vindo ao Naver!</h1>
+        <h1 id="naver" class="hidden">Naver</h1>
+        <input type="text" placeholder="Pesquisar ou digitar URL" id="search" onkeypress="checkEnter(event)">
+
+        <div class="favorites">
+            <h2>Links Úteis</h2>
+            <a href="https://www.google.com">Google</a>
+            <a href="https://www.youtube.com">YouTube</a>
+            <a href="https://profile.intra.42.fr/">42 intra</a>
+            <a href="https://github.com/">Github</a>
+            <a href="sobre.html">Sobre</a>
+        </div>
+    </div>
+
+    <script>
+        function search() {
+            const query = document.getElementById('search').value;
+            if (query) {
+                window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(query);
+            }
+        }
+
+        function checkEnter(event) {
+            if (event.key === 'Enter') {
+                search();
+            }
+        }
+
+        window.onload = function() {
+            const welcomeText = document.getElementById('welcome');
+            const naverText = document.getElementById('naver');
+
+            setTimeout(() => {
+                welcomeText.classList.add('fade-out');
+                setTimeout(() => {
+                    welcomeText.classList.add('hidden');
+                    naverText.classList.remove('hidden');
+                }, 2000);
+            }, 4000);
+        };
+    </script>
+</body>
+</html>
+
